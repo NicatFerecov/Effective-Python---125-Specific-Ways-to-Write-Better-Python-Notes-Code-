@@ -1,6 +1,6 @@
-# know the Differences Between bytes and str
+# Know the Differences Between bytes and str
 
-Python'da, karakter verilerinin dizilerini temsil eden iki tür vardır: bytes ve str. Bytes örnekleri, ham, işaretsiz 8 bitlik değerler içerir **(genellikle ASCII kodlamasında görüntülenir)**
+In Python, there are two types that represent sequences of character data: bytes and str. Bytes instances contain raw, unsigned 8-bit values **(usually displayed in ASCII encoding)**
 
 
 		a = b"h\x65llo"
@@ -8,36 +8,36 @@ Python'da, karakter verilerinin dizilerini temsil eden iki tür vardır: bytes v
 		output:
 			<class 'bytes'>
 
-str örnekleri, insan dillerindeki metin karakterlerini temsil eden Unicode kod noktalarını içerir:
-	Önemli olarak, bir str örneği ilişkili bir ikili kodlamaya sahip değildir ve bir bytes örneği ilişkili bir metin kodlamasına sahip değildir. Unicode verilerini ikili verilere dönüştürmek için str'nin encode yöntemini çağırmanız gerekir. İkili verileri Unicode verilerine dönüştürmek için bytes'ın decode yöntemini çağırmanız gerekir. Bu yöntemler için kullanmak istediğiniz kodlamayı açıkça belirtebilir veya genellikle UTF-8 olan sistem varsayılanını kabul edebilirsiniz.
+Str instances contain Unicode code points representing text characters in human languages:
+	Importantly, a string instance does not have an associated binary encoding, and a bytes instance does not have an associated text encoding. To convert Unicode data to binary data, you must call the encode method of the string. To convert binary data to Unicode data, you must call the decode method of bytes. You can explicitly specify the encoding you want to use for these methods, or you can accept the system default, which is usually UTF-8.
 
-Python programları yazarken, Unicode verilerinin kodlamasını ve kod çözmesini arayüzlerinizin en uzak sınırında yapmak önemlidir; bu yaklaşım genellikle Unicode sandviçi olarak adlandırılır. Programınızın çekirdeği, Unicode verilerini içeren str türünü kullanmalı ve karakter kodlamaları hakkında herhangi bir varsayımda bulunmamalıdır. Bu yapılandırma, çıktı metin kodlaması konusunda katı davranırken (ideal olarak UTF-8), alternatif metin kodlamalarını (Latin-1, Shift JIS ve Big5 gibi) kolayca kabul etmenizi sağlar.
+When writing Python programmes, it is important to perform the encoding and decoding of Unicode data at the outermost boundary of your interfaces; this approach is often referred to as the Unicode sandwich. The core of your programme should use the str type, which contains Unicode data, and should not make any assumptions about character encodings. This configuration allows you to be strict about output text encoding (ideally UTF-8) while easily accepting alternative text encodings (such as Latin-1, Shift JIS, and Big5).
 
-Karater veri türleri arasındakı ayrımı Pythonda iki yaygın duruma yol açıyor:
-	1. UTF-8 kodlu dizeler (veya başka bir kodlama) içeren ham 8 bit diziler üzerinde işlem yapmak istiyorsunuz.
-	2. Belirli bir kodlaması olmayan Unicode dizeleri üzerinde işlem yapmak istiyorsunuz.
-
-
-Python'da ham 8 bit değerler ve Unicode dizeleriyle çalışırken iki önemli husus vardır.
-
-İlk sorun, *bytes* ve *str*'nin aynı şekilde çalışıyor gibi görünmesi, ancak bunların örneklerinin birbirleriyle uyumlu olmamasıdır. Bu nedenle, aktardığınız karakter dizilerinin türleri konusunda dikkatli olmalısınız.
+The distinction between character data types in Python leads to two common scenarios:
+	1. You want to perform operations on raw 8-bit arrays containing UTF-8 encoded strings (or another encoding).
+	2. You want to operate on Unicode strings that do not have a specific encoding.
 
 
-byte ile byte ve str ile str birleştire bilirsiniz:
+When working with raw 8-bit values and Unicode strings in Python, there are two important considerations.
+
+The first issue is that *bytes* and *str* appear to work in the same way, but their instances are not compatible with each other. Therefore, you must be careful about the types of character sequences you pass.
+
+
+You can concatenate bytes with bytes and strings with strings:
 	print(b"one" + b"two")
 	print("one" + "two")
-hata vermez.
+This does not cause an error.
 
-ama byte ile stringi birleştirmeye çalışırsanız:
+However, if you try to concatenate a byte with a string:
 	b"one" + "two"
 	output:
 		Traceback ...
 		TypeError: can't concat str to bytes
-Byte ve str örneklerinin eşitliğini karşılaştırmak, tam olarak aynı karakterleri içerdiklerinde bile (bu durumda ASCII kodlu “foo”) her zaman False sonucunu verir:
+Comparing the equality of byte and str instances always returns False, even when they contain exactly the same characters (in this case, the ASCII-encoded "foo"):
 
-## Hatırlanması gerekenler
-1. *bytes*, 8 bitlik değer dizilerini içerir ve *str*, Unicode kod noktası dizilerini içerir.
-2. Yardımcı işlevleri kullanarak, üzerinde işlem yaptığınız girdilerin beklediğiniz karakter dizisi türü olduğundan emin olun (8 bit değerler, UTF-8 kodlu dizeler, Unicode kod noktaları vb.).
-3. *bytes* ve *str* örnekleri operatörlerle (>, ==, + ve % gibi) birlikte kullanılamaz.
-4. Bir dosyadan ikili verileri okumak veya dosyaya ikili verileri yazmak istiyorsanız, dosyayı her zaman ikili modda (örneğin “rb” veya “wb”) açın.
-5. Bir dosyaya Unicode verilerini okumak veya yazmak istiyorsanız, sisteminizin varsayılan metin kodlamasına dikkat edin. Sürprizlerle karşılaşmamak için kodlama parametresini açıkça open işlevine aktarın.
+## Key points to remember
+1. *bytes* contain sequences of 8-bit values, and *str* contains sequences of Unicode code points.
+2. Using helper functions, ensure that the inputs you are operating on are the expected character sequence type (8-bit values, UTF-8 encoded strings, Unicode code points, etc.).
+3. *bytes* and *str* instances cannot be used with operators (>, ==, +, and %).
+4. If you wish to read binary data from a file or write binary data to a file, always open the file in binary mode (e.g., "rb" or "wb").
+5. If you wish to read or write Unicode data to a file, pay attention to your system's default text encoding. To avoid surprises, explicitly pass the encoding parameter to the open function.
