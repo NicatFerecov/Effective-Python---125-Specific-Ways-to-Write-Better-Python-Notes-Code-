@@ -1,12 +1,12 @@
 # Avoid Striding and Slicing in a Single Expression
 
-tarix: 9.09.2025
+Date: 9.09.2025
 
-Temel dilimleme işlemine ek olarak Python, somelist **[start:end:stride]** biçiminde bir dilimin adım uzunluğu için özel bir sözdizimi içerir. Bu, bir diziyi dilimlerken her n'inci öğeyi almanızı sağlar. Örneğin, adım uzunluğu, bir listedeki çift ve tek sıra numaralarına göre gruplandırmayı kolaylaştırır.
+In addition to the basic slicing operation, Python includes a special syntax for specifying the stride length of a slice in the form of a list **[start:end:stride]**. This allows you to take every nth element when slicing a list. For example, the stride length facilitates grouping based on even and odd row numbers in a list.
 
 *example:*
-	Burada, ::2 **“Başlangıçtan itibaren her ikinci öğeyi seç”** anlamına gelir. Daha karmaşık olan ::-2 ise **“Sonundan başlayarak geriye doğru her ikinci öğeyi seç”** anlamına gelir.
-*2::2* ne anlama gelir?  Ve *-2::-2, -2:2:-2 ve 2:2:-2* arasındaki fark nedir?
+	Here, ::2 means **"Select every second element starting from the beginning"**. The more complex ::-2 means **"Select every second element starting from the end and moving backwards"**.
+What does *2::2* mean? And what is the difference between *-2::-2, -2:2:-2 and 2:2:-2*?
 *example:*
 	x[2::2]     # ["c", "e", "g"]
 	x[-2::-2]   # ["g", "e", "c", "a"]
@@ -19,9 +19,9 @@ Temel dilimleme işlemine ek olarak Python, somelist **[start:end:stride]** biç
 	['g', 'e', 'c', 'a']
 	['g', 'e']
 	[]
-Adım kullanmanız gerekiyorsa, pozitif bir değer tercih edin ve başlangıç ve bitiş indekslerini atlayın. Başlangıç veya bitiş indeksleriyle adım kullanmanız gerekiyorsa, adımlama için bir atama ve dilimleme için başka bir atama kullanmayı düşünün.
+If you need to use a step, choose a positive value and skip the start and end indices. If you need to use a step with start or end indices, consider using one assignment for stepping and another for slicing.
 
-## Hatırlanması Gerekenler
-1. Başlangıç, bitiş ve adım uzunluğunu tek bir dilimde birlikte belirtmek son derece kafa karıştırıcı olabilir.
-2. Adım atmak gerekiyorsa, başlangıç veya bitiş indeksleri olmadan yalnızca pozitif adım değerlerini kullanmaya çalışın; negatif adım değerlerinden kaçının.
-3. Tek bir dilimde başlangıç, bitiş ve adım uzunluğu gerekiyorsa, iki atama yapmayı (biri adım uzunluğu, diğeri dilimleme için) veya itertools yerleşik modülünden islice kullanmayı düşünün.
+## Things to Remember
+1. Specifying the start, end, and step length together in a single slice can be extremely confusing.
+2. If you need to step, try to use only positive step values without start or end indices; avoid negative step values.
+3. If you need the start, end, and step length in a single slice, consider making two assignments (one for the step length, the other for slicing) or using islice from the itertools built-in module.
