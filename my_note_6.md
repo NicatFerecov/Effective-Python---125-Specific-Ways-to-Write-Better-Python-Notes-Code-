@@ -4,8 +4,8 @@ Date: 9.09.2025
 
 In addition to the basic slicing operation, Python includes a special syntax for specifying the stride length of a slice in the form of a list **[start:end:stride]**. This allows you to take every nth element when slicing a list. For example, the stride length facilitates grouping based on even and odd row numbers in a list.
 
-*Example:*
-	Here, ::2 means **"Select every second element starting from the beginning"**. The more complex ::-2 means **"Select every second element starting from the end and moving backwards"**.
+## Example:
+Here, ::2 means **"Select every second element starting from the beginning"**. The more complex ::-2 means **"Select every second element starting from the end and moving backwards"**.
 What does *2::2* mean? And what is the difference between *-2::-2, -2:2:-2 and 2:2:-2*?
 ## Example:
 	
