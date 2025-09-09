@@ -1,21 +1,21 @@
 # Know How to Slice Sequences
 
-tarix: 9.09.2025
+Date: 9.09.2025
 
-Dilimleme sözdiziminin temel biçimi somelist **[başlangıç:bitiş]** şeklindedir; burada başlangıç dahil, bitiş hariçtir:
-*Not: başlangıç dahil, bitiş hariçtir.*
+The basic form of the slicing syntax is `somelist [start:end]`; here, the start is included, but the end is excluded:
+*Note: start is included, end is excluded.*
 
-Bir dizinin sonuna kadar dilimleme yaparken, son indeksi gereksiz olduğu için dışarıda bırakmalısınız.
+When slicing to the end of an array, you should omit the final index as it is unnecessary.
 
-*Not:*
-Bir listeyi negatif bir değişkenle indekslemek, dilimleme işleminden şaşırtıcı sonuçlar alabileceğiniz birkaç durumdan biridir. Örneğin, somelist[-n:] ifadesi, n sıfırdan büyük olduğunda (örneğin, n 3 olduğunda somelist[-3:]) düzgün çalışır. Ancak, n sıfır olduğunda, somelist[-0:] ifadesi somelist[] ile eşdeğerdir ve bu da orijinal listenin bir kopyasını oluşturur.
+*Note:*
+Indexing a list with a negative variable is one of several situations where you may get surprising results from the slicing operation. For example, the expression somelist[-n:] works correctly when n is greater than zero (e.g., somelist[-3:] when n is 3). However, when n is zero, the expression somelist[-0:] is equivalent to somelist[] and creates a copy of the original list.
 
-Bir listeyi dilimleme işleminin sonucu, tamamen yeni bir listedir. Yeni listedeki her bir öğe, orijinal listedeki karşılık gelen nesnelere başvurur. Dilimlemeyle oluşturulan listeyi değiştirmek, orijinal listenin içeriğini etkilemez.
+The result of slicing a list is an entirely new list. Each element in the new list references the corresponding objects in the original list. Modifying the list created by slicing does not affect the contents of the original list.
 
-Dilimleme yaparken başlangıç ve bitiş indekslerini dışarıda bırakırsanız, orijinal listenin tamamının bir kopyası elde edersiniz.
+If you omit the start and end indices when slicing, you will obtain a copy of the entire original list.
 
 
-## Hatırlanması Gerekenler
-1. Dilimleme yaparken fazla ayrıntıya girmeyin: Başlangıç dizini için 0 veya bitiş dizini için dizinin uzunluğu değerini vermeyin.
-2. Dilimleme, sınırların dışında kalan başlangıç veya bitiş indekslerini kabul eder, bu da bir dizinin ön veya arka sınırlarında dilimleri ifade etmenin kolay olduğu anlamına gelir (örneğin, a[:20] veya a[-20:]).
-3. Bir liste dilimine atama yapmak, uzunlukları farklı olsa bile orijinal dizideki o aralığı referans verilenle değiştirir.
+## Things to Remember
+1. Avoid excessive detail when slicing: Do not specify 0 for the start index or the length of the array for the end index.
+2. Slicing accepts start or end indices outside the bounds, which means it is easy to express slices at the front or back of an array (e.g., a[:20] or a[-20:]).
+3. Assigning to a list slice replaces the referenced range in the original array, even if the lengths differ.
