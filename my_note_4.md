@@ -1,18 +1,18 @@
 # Prefer Explicit String Concatenation over Implicit, Especially in Lists
 
-tarix: 9.09.2025
+Date: 9.09.2025
 
 
-+ operatörü mevcut olduğunda, otomatik biçimlendirici satır sonunu yine de değiştirebilir, ancak bu durumda en azından kodun yazarının asıl amacının ne olduğu açıktır.
-	örnek:
+When the + operator is present, the automatic formatter may still change the line break, but at least the author's original intent is clear.
+	Example:
 		my_test6 = [
 	    "first line\n",
 	    "second line\n" + "third line\n",
 	]
 
-Benim tavsiyem, herhangi bir karışıklığı önlemek için, bir işlev çağrısı birden fazla konumsal argüman aldığında her zaman açık dize birleştirme kullanmanızdır Yukarıdaki print örneğinde olduğu gibi tek bir konumsal argüman varsa, örtük dize birleştirme kullanmak uygundur. Anahtar kelime argümanları, açıklığı en üst düzeye çıkaran açık veya örtük birleştirme kullanılarak aktarılabilir, çünkü kardeş dize sabitleri = karakterinden sonra konumsal argümanlar olarak yanlış yorumlanamaz.
+My recommendation is to always use explicit string concatenation when a function call takes multiple positional arguments to avoid any confusion. As in the print example above, if there is only one positional argument, using implicit string concatenation is appropriate. Keyword arguments can be passed using explicit or implicit concatenation, which maximises clarity, because they cannot be misinterpreted as positional arguments after the `=` character.
 
-## Hatırlanması Gerekenler
-1. Python kodunda iki string literal birbirinin yanında yer aldığında, C programlama dilindeki örtük string birleştirme özelliğine benzer şekilde, aralarında **+** operatörü varmış gibi birleştirilirler.
-2. Liste ve tuple literal'larındaki öğelerin örtük olarak birleştirilmesinden kaçının, çünkü bu, orijinal yazarın niyetine dair belirsizlik yaratır. Bunun yerine, + operatörüyle açık birleştirme kullanmalısınız.
-3. İşlev çağrılarında, bir konumsal argüman ve herhangi bir sayıda anahtar kelime argümanı ile örtük dize birleştirme kullanmak uygundur, ancak birden fazla konumsal argüman olduğunda açık birleştirme kullanmalısınız.
+## Key Takeaways
+1. In Python code, when two string literals appear next to each other, they are concatenated as if there were a **+** operator between them, similar to the implicit string concatenation feature in the C programming language.
+2. Avoid implicit concatenation of elements in list and tuple literals, as this creates uncertainty about the original author's intent. Instead, you should use explicit concatenation with the + operator.
+3. In function calls, it is appropriate to use implicit string concatenation with one positional argument and any number of keyword arguments, but you should use explicit concatenation when there are multiple positional arguments.
