@@ -9,7 +9,7 @@ In addition to the basic slicing operation, Python includes a special syntax for
 What does *2::2* mean? And what is the difference between *-2::-2, -2:2:-2 and 2:2:-2*?
 	*Example:*
 	
-	(x[2::2]     # ["c", "e", "g"]
+	x[2::2]     # ["c", "e", "g"]
 	
 	x[-2::-2]   # ["g", "e", "c", "a"]
 	
