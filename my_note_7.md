@@ -1,23 +1,23 @@
 # Prefer Catch-All Unpacking over Slicing
 
-tarix: 9.09.2025
+Date: 9.09.2025
 
 
 	oldest, second_oldest, *others = car_ages_descending
 	print(oldest, second_oldest, others)
-Bu kod daha kısa, okunması daha kolay ve satırlar arasında senkronize tutulması gereken sınır indekslerinin hataya açık kırılganlığı artık yok.
-Yıldızlı bir ifade herhangi bir konumda (başlangıç, orta veya son) görünebilir, böylece isteğe bağlı bir dilimi ayıklamanız gerektiğinde her zaman her şeyi kapsayan açma işleminin avantajlarından yararlanabilirsiniz.
-Ancak, açma atamasında yıldızlı ifade kullandığınızda, en az bir zorunlu parçaya sahip olmanız gerekir, aksi takdirde sözdizimi hatası alırsınız. Tek başına her şeyi kapsayan ifadeyi kullanamazsınız.
+This code is shorter, easier to read, and eliminates the error-prone fragility of boundary indices that must be synchronised across lines.
+A starred expression can appear in any position (beginning, middle, or end), so you can always take advantage of the catch-all unpacking when you need to extract an optional slice.
+However, when using a starred expression in an extraction assignment, you must have at least one mandatory part; otherwise, you will get a syntax error. You cannot use the all-encompassing expression on its own.
 # Example:
 	*others = car_ages_descending
 	>>>
 	Traceback ...
 	SyntaxError: starred assignment target must be in a list or tuple
-*Note*: Tek bir açma deseninde birden fazla genel ifade kullanamazsınız.
-Yıldız işaretli ifadeler her durumda liste örnekleri haline gelir. Açılan diziden kalan öğe yoksa, her şeyi kapsayan kısım boş bir liste olacaktır.
-Ancak, yıldızlı bir ifade her zaman bir listeye dönüştürüldüğü için, bir yineleyiciyi açmak bilgisayarınızın tüm belleğini tüketme ve programınızın çökmesine neden olma riskini de beraberinde getirir Bu nedenle, sonuç verilerinin tümünün belleğe sığacağına inanmak için iyi bir nedeniniz olduğunda yineleyicilerde her şeyi içeren açma işlemini kullanmalısınız.
+*Note*: You cannot use multiple general expressions in a single opening pattern.
+Starred expressions always become list comprehensions. If there are no remaining elements in the unpacked sequence, the encompassing part will be an empty list.
+However, because a starred expression is always converted to a list, unpacking an iterator carries the risk of consuming all your computer's memory and causing your programme to crash. Therefore, you should only use the all-encompassing unpacking operation on iterators when you have good reason to believe that all the result data will fit in memory.
 
-## Hatırlanması Gerekenler
-1. Paket açma atamaları, paket açma deseninin diğer bölümlerine atanmamış tüm değerleri bir listede depolamak için yıldızlı bir ifade içerebilir.
-2. Yıldız işaretli ifadeler, açma deseninin herhangi bir konumunda görünebilir. Bunlar her zaman sıfır veya daha fazla değer içeren bir liste örneği haline gelir.
-3. Bir listeyi üst üste binmeyen parçalara bölerken, her şeyi kapsayan açma işlemi, dilimleme ve indeksleme yapan ayrı ifadeler kullanmaktan çok daha az hataya meyillidir.
+## Key Points to Remember
+1. Unpacking assignments may contain a starred expression to store all values not assigned to other parts of the unpacking pattern in a list.
+2. Asterisked expressions can appear anywhere in the unpacking pattern. They always result in a list containing zero or more values.
+3. When splitting a list into non-overlapping parts, the all-encompassing unpacking operation is far less prone to errors than using separate expressions for slicing and indexing.
