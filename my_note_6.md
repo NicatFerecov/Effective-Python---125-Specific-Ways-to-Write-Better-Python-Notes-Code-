@@ -7,8 +7,9 @@ In addition to the basic slicing operation, Python includes a special syntax for
 *example:*
 	Here, ::2 means **"Select every second element starting from the beginning"**. The more complex ::-2 means **"Select every second element starting from the end and moving backwards"**.
 What does *2::2* mean? And what is the difference between *-2::-2, -2:2:-2 and 2:2:-2*?
-*example:*
-	x[2::2]     # ["c", "e", "g"]
+ *example:*
+	
+ x[2::2]     # ["c", "e", "g"]
 	x[-2::-2]   # ["g", "e", "c", "a"]
 	x[-2:2:-2]  # ["g", "e"]
 	x[2:2:-2]   # []
