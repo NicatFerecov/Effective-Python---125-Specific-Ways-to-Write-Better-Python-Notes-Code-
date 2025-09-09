@@ -1,15 +1,15 @@
 # Understand the Difference Between repr and str when Printing Objects
 
-tarix: 9.09.2025
+Date: 9.09.2025
 
 **Repr**:
-	Hata ayıklama sırasında neredeyse her zaman istediğiniz şey, bir nesnenin repr sürümünü görmektir. repr yerleşik işlevi, bir nesnenin yazdırılabilir temsilini döndürür; bu, nesnenin en açık şekilde anlaşılabilir dize serileştirilmesi olmalıdır. Birçok yerleşik tür için, repr tarafından döndürülen dize geçerli bir Python ifadesidir.
-	misal: *code_3.py*
-Bu, **%** operatörüyle **“%r”** format dizesi veya **!r** tür dönüştürmeyle **f-dizesi** kullanmaya eşdeğerdir:
+	When debugging, what you almost always want to see is an object's repr version. The built-in repr function returns a printable representation of an object; this should be the most clearly understandable string serialisation of the object. For many built-in types, the string returned by repr is a valid Python expression.
+	Example: *code_3.py*
+This is equivalent to using the **%r** format string with the **%** operator or the **!r** type conversion with an **f-string**:
 
 
-## Hatırlanması Gerekenler
-1. Yerleşik Python türlerinde print işlevini çağırmak, tür bilgilerini gizleyen, insan tarafından okunabilir bir değer dizesi üretir.
-2. Python'un yerleşik türleri üzerinde repr işlevini çağırmak, bir değerin yazdırılabilir temsilini içeren bir dize üretir. repr dizeleri genellikle eval yerleşik işlevine aktarılarak orijinal değer geri alınabilir.
-3. %s biçim dizeleri, str gibi insan tarafından okunabilir dizeler üretir. %r, repr gibi yazdırılabilir dizeler üretir. F-dizeleri, !r dönüştürme sonekini belirtmediğiniz sürece, değiştirme metin ifadeleri için insan tarafından okunabilir dizeler üretir.
-4. Sınıflarınızda __repr__ ve __str__ özel yöntemlerini tanımlayarak, örneklerin yazdırılabilir ve insan tarafından okunabilir temsilini özelleştirebilirsiniz. Bu, hata ayıklamaya yardımcı olabilir ve nesnelerin insan arayüzlerine entegrasyonunu basitleştirebilir.
+## Key Points to Remember
+1. Calling the print function on built-in Python types produces a human-readable value string that hides type information.
+2. Calling the repr function on Python's built-in types produces a string containing a printable representation of a value. repr strings can often be passed to the eval built-in function to retrieve the original value.
+3. %s format strings produce human-readable strings like str. %r produces printable strings like repr. F-strings produce human-readable strings for substitution text expressions unless you specify the !r conversion suffix.
+4. By defining the special __repr__ and __str__ methods in your classes, you can customise the printable and human-readable representation of instances. This can aid debugging and simplify the integration of objects into human interfaces.
